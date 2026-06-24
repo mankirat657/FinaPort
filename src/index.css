@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+  overflow-x: hidden;
+}
+.montsterat {
+  font-family: "Montserrat", sans-serif;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.glassEffect {
+  background: #0000000b;
+  backdrop-filter: blur(5px);
+}
+
+.alterative {
+  font-family: "Montserrat Alternates", sans-serif;
+}
+
+.fontTri {
+  font-family: "Staatliches", sans-serif;
+}
+
+.lineheight {
+  line-height: .9;
+}
+
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100svh;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  background-color: #0f0f0f;
+  color: var(--base-100);
+  will-change: clip-path;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.preloader-images {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.preloader-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 200px;
+  height: 250px;
+  transform-origin: center center;
+  clip-path: polygon(20% 20%, 80% 20%, 80% 80%, 20% 80%);
+  will-change: transform, clip-path;
+}
+
+.preloader-header {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference !important;
+
+}
+
+.preloader-header h1 {
+  text-transform: uppercase;
+  font-size: clamp(2rem, 5vw, 15rem);
+  line-height: 0.85;
+  color: white;
+}
+
+.preloader-counter {
+  position: absolute;
+  top: -1.5rem;
+  left: calc(100% + 1.5rem);
+  overflow: hidden;
+}
+
+.preloader-counter p {
+  color: var(--base-100);
+  font-size: clamp(1rem, 1.5vvw, 2rem);
+  line-height: 0.85;
+}
+
+.char,
+.word,
+.preloader-counter p {
+  transform: translateY(100%);
+  will-change: transform;
+}
+
+@media (max-width: 1000px) {
+  .preloader-counter {
+    top: -1.5rem;
+    left: calc(100% + 0.5rem);
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 0;
+    text-align: right;
+  }
+}
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #E8001D, #ff6b6b, #E8001D);
+  transform-origin: left;
+  transform: scaleX(0);
+  z-index: 9999;
+  width: 100%;
+}
+
+.marq-item {
+  font-family: 'Orbitron', 'Bebas Neue', sans-serif;
+  font-weight: 700;
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.15);
+}
+
+.sk-big-title .c {
+  display: inline-block;
+  will-change: transform, opacity;
+  transform-origin: center bottom;
+  text-shadow: 0 0 80px rgba(232, 0, 29, 0.08);
+}
+
+.sk-row {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sk-tag {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: default;
+}
+
+.red-block {
+  box-shadow: 0 0 20px rgba(232, 0, 29, 0.2);
+}
+
+.bottom-cta {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.shimmer-text {
+  background: linear-gradient(90deg, #E8001D 0%, #ff6b6b 25%, #E8001D 50%, #ff6b6b 75%, #E8001D 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+}
