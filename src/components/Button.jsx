@@ -1,26 +1,28 @@
 import React, { useRef, useEffect } from 'react'
 import gsap from 'gsap'
-
-const Button = ({ 
-  classnames = "", 
-  Icon, 
+import { Link } from 'react-router-dom';
+import lenis from 'lenis';
+const Button = ({
+  classnames = "",
+  Icon,
   iconColor = "currentColor",
   children = "Button",
   onClick,
   disabled = false,
-  ...props 
+  sectionId = "",
+  ...props
 }) => {
   const buttonRef = useRef(null);
   const textContainerRef = useRef(null);
   const originalTextRef = useRef(null);
   const copyTextRef = useRef(null);
   const iconRef = useRef(null);
-  
+
   useEffect(() => {
     if (copyTextRef.current) {
       gsap.set(copyTextRef.current, { y: '100%', opacity: 0 });
     }
-    
+
     if (iconRef.current) {
       gsap.set(iconRef.current, { y: 0 });
     }
@@ -53,7 +55,16 @@ const Button = ({
       }, 0);
     }
   };
+  const handleClick = (e) => {
+    if (sectionId && window.lenis) {
+      window.lenis.scrollTo(`#${sectionId}`, {
+        duration: 1.5,
+        offset: -80,
+      });
+    }
 
+    onClick?.(e);
+  };
   const handleMouseLeave = () => {
     const tl = gsap.timeline({
       defaults: { duration: 0.3, ease: "power2.inOut" }
@@ -80,21 +91,21 @@ const Button = ({
   return (
     <button
       ref={buttonRef}
-      onClick={onClick}
+      onClick={handleClick}
       disabled={disabled}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       className={`relative overflow-hidden inline-flex items-center gap-2    transition-colors duration-300 ${classnames}`}
       {...props}
     >
-      <div 
+      <div
         ref={textContainerRef}
         className="relative inline-flex items-center gap-2 overflow-hidden"
       >
-        <span 
+        <span
           ref={originalTextRef}
           className="inline-flex items-center gap-2"
-          style={{ 
+          style={{
             display: 'inline-flex',
             alignItems: 'center',
             gap: '0.5rem'
@@ -103,10 +114,10 @@ const Button = ({
           {children}
         </span>
 
-        <span 
+        <span
           ref={copyTextRef}
           className="absolute inline-flex items-center gap-2"
-          style={{ 
+          style={{
             display: 'inline-flex',
             alignItems: 'center',
             gap: '0.5rem',
@@ -119,7 +130,7 @@ const Button = ({
       </div>
 
       {Icon && (
-        <span 
+        <span
           ref={iconRef}
           className="inline-flex items-center"
           style={{ color: iconColor }}
@@ -128,6 +139,7 @@ const Button = ({
         </span>
       )}
     </button>
+
   );
 };
 

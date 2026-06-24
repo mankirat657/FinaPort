@@ -12,6 +12,7 @@ import Project from './components/Project'
 import Skills from './components/Skills'
 import Footer from './components/Footer'
 import Contact from './components/Contact'
+import ArtShowCaseGallery from './components/ArtShowCaseGallery'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -25,15 +26,15 @@ const App = () => {
 
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 2, // smoother than 1.4
+      duration: 2, 
       smoothWheel: true,
       wheelMultiplier: 0.7,
       touchMultiplier: 1.2,
-      lerp: 0.08, // buttery smooth interpolation
+      lerp: 0.08,
       infinite: false,
       autoRaf: false
     })
-
+    window.lenis = lenis
     lenis.on('scroll', ScrollTrigger.update)
 
     const raf = (time) => {
@@ -80,12 +81,28 @@ const App = () => {
         <div className="min-h-screen bg-[#FFF1E9] w-full relative">
 
           <Navbar />
+          <section id="home">
           <Hero />
+          </section>
+          <section id="about">
           <About />
+          </section>
+          <section id="aboutdetails">
           <AboutDetails />
+          </section>
+          <section id="project">
           <Project />
+          </section>
+          <section id="skills">
           <Skills />
+          </section>
+          <section id="gallery">
+            <ArtShowCaseGallery />
+          </section>
+          <section id="connect">
           <Footer />
+          </section>
+
         </div>
       )}
     </div>

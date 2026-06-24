@@ -27,33 +27,33 @@ const MarqueeTrack = ({ innerRef, textClassName }) => (
 )
 
 const Project = () => {
-    const cardRef    = useRef(null)
+    const cardRef = useRef(null)
     const sectionRef = useRef(null)
 
     const [frontIndex, setFrontIndex] = useState(0)
-    const [backIndex,  setBackIndex]  = useState(1)
+    const [backIndex, setBackIndex] = useState(1)
     const frontIndexRef = useRef(0)
-    const backIndexRef  = useRef(1)
+    const backIndexRef = useRef(1)
 
     const frontCursorContainerRef = useRef(null)
-    const backCursorContainerRef  = useRef(null)
+    const backCursorContainerRef = useRef(null)
     const frontCursor1Ref = useRef(null)
     const frontCursor2Ref = useRef(null)
-    const backCursor1Ref  = useRef(null)
-    const backCursor2Ref  = useRef(null)
+    const backCursor1Ref = useRef(null)
+    const backCursor2Ref = useRef(null)
 
-    const marqueeTrackARef  = useRef(null)
-    const marqueeTrackBRef  = useRef(null)
-    const scrollTweenARef   = useRef(null)
-    const scrollTweenBRef   = useRef(null)
-    const slideTimelineRef  = useRef(null)
-    const visibleTrackRef   = useRef('A')
+    const marqueeTrackARef = useRef(null)
+    const marqueeTrackBRef = useRef(null)
+    const scrollTweenARef = useRef(null)
+    const scrollTweenBRef = useRef(null)
+    const slideTimelineRef = useRef(null)
+    const visibleTrackRef = useRef('A')
 
     const projects = [
-        { image: proj1, title: "ALQUIDA AI (Learning Platform)",  tags: ["AI", "QUIZ", "EXAMINATION"] },
-        { image: proj2, title: "ARCHITECT SHOWCASE WEBSITE",       tags: ["REACT", "GSAP", "TAILWIND"] },
-        { image: Proj3, title: "LANDSLIDE MANAGEMENT",             tags: ["MERN", "SOCKET.IO", "MAPS"]  },
-        { image: Proj4, title: "SKILL EXCHANGE PLATFORM",          tags: ["NODE", "MONGODB", "REDIS"]   },
+        { image: proj1, title: "ALQUIDA AI (Learning Platform)", tags: ["AI", "QUIZ", "EXAMINATION", "MERN"], projLink: "https://vidyapeeth-lms-frontend.vercel.app/" },
+        { image: proj2, title: "ARCHITECT SHOWCASE WEBSITE", tags: ["REACT", "GSAP", "TAILWIND"], projLink: "https://eloquent-banoffee-1bb841.netlify.app/" },
+        { image: Proj3, title: "Code time machine", tags: ["Javascript", "indexDB", "Git"], projLink: "https://amazing-lebkuchen-996709.netlify.app/" },
+        { image: Proj4, title: "Motion", tags: ["Javascript", "localStorage", "API"], projLink: "https://storied-dango-01dbe7.netlify.app/" },
     ]
     const totalProjects = projects.length
 
@@ -61,10 +61,10 @@ const Project = () => {
         if (!c1.current || !c2.current) return
         gsap.killTweensOf([c1.current, c2.current])
         if (dir === 'enter') {
-            gsap.to(c1.current,     { x: -100, opacity: 0, duration: 0.4, ease: "power2.in"  })
+            gsap.to(c1.current, { x: -100, opacity: 0, duration: 0.4, ease: "power2.in" })
             gsap.fromTo(c2.current, { x: 100, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4, ease: "power2.out" })
         } else {
-            gsap.to(c2.current,     { x: -100, opacity: 0, duration: 0.4, ease: "power2.in"  })
+            gsap.to(c2.current, { x: -100, opacity: 0, duration: 0.4, ease: "power2.in" })
             gsap.fromTo(c1.current, { x: 100, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4, ease: "power2.out" })
         }
     }
@@ -74,7 +74,7 @@ const Project = () => {
         const B = marqueeTrackBRef.current
         if (!A || !B) return
 
-        gsap.set(A, { yPercent: 0   })
+        gsap.set(A, { yPercent: 0 })
         gsap.set(B, { yPercent: 100 })
         visibleTrackRef.current = 'A'
 
@@ -102,7 +102,7 @@ const Project = () => {
 
         const isAVisible = visibleTrackRef.current === 'A'
         const outEl = isAVisible ? A : B
-        const inEl  = isAVisible ? B : A
+        const inEl = isAVisible ? B : A
 
         // Park incoming on the correct side depending on direction
         if (direction === 'forward') {
@@ -112,7 +112,7 @@ const Project = () => {
         }
 
         const outTarget = direction === 'forward' ? -100 : 100
-        const inTarget  = 0
+        const inTarget = 0
 
         const tl = gsap.timeline({
             defaults: { duration: 0.55, ease: "power2.inOut" },
@@ -125,7 +125,7 @@ const Project = () => {
         })
 
         tl.to(outEl, { yPercent: outTarget }, 0)
-          .to(inEl,  { yPercent: inTarget  }, 0)
+            .to(inEl, { yPercent: inTarget }, 0)
 
         slideTimelineRef.current = tl
     }
@@ -140,7 +140,7 @@ const Project = () => {
     }, [])
 
     useEffect(() => {
-        const card    = cardRef.current
+        const card = cardRef.current
         const section = sectionRef.current
         if (!card || !section) return
 
@@ -150,14 +150,14 @@ const Project = () => {
 
         const trigger = ScrollTrigger.create({
             trigger: section,
-            start:   "20% top",
-            end:     `+=${totalProjects * 1200}`,
-            pin:     true,
-            scrub:   1,
+            start: "20% top",
+            end: `+=${totalProjects * 1200}`,
+            pin: true,
+            scrub: 1,
             anticipatePin: 1,
 
             onUpdate: (self) => {
-                const progress      = Math.min(Math.max(self.progress, 0), 1)
+                const progress = Math.min(Math.max(self.progress, 0), 1)
                 const totalRotation = progress * (totalProjects - 1) * 180
 
                 if (card) card.style.transform = `rotateX(${totalRotation}deg)`
@@ -181,14 +181,14 @@ const Project = () => {
                     Math.max(Math.floor(totalRotation / 180), 0),
                     totalProjects - 2 >= 0 ? totalProjects - 2 : 0
                 )
-                const flipIsEven   = flip % 2 === 0
+                const flipIsEven = flip % 2 === 0
                 const restingIndex = flip
                 const incomingIndex = Math.min(flip + 1, totalProjects - 1)
-                const restingFace  = flipIsEven ? 'front' : 'back'
+                const restingFace = flipIsEven ? 'front' : 'back'
 
-                const eff          = ((totalRotation % 360) + 360) % 360
+                const eff = ((totalRotation % 360) + 360) % 360
                 const frontVisible = !(eff > 90 && eff < 270)
-                const hiddenFace   = frontVisible ? 'back' : 'front'
+                const hiddenFace = frontVisible ? 'back' : 'front'
                 const hiddenFaceTarget = hiddenFace === restingFace ? restingIndex : incomingIndex
 
                 if (hiddenFace === 'front' && frontIndexRef.current !== hiddenFaceTarget) {
@@ -202,7 +202,7 @@ const Project = () => {
 
             onLeaveBack: () => {
                 frontIndexRef.current = 0
-                backIndexRef.current  = 1
+                backIndexRef.current = 1
                 setFrontIndex(0)
                 setBackIndex(1)
                 midpointsCrossed = 0
@@ -216,9 +216,24 @@ const Project = () => {
 
         return () => { trigger.kill() }
     }, [])
+    const getVisibleProject = () => {
+        const card = cardRef.current;
 
+        if (!card) return projects[0];
+
+        const transform = card.style.transform;
+        const rotation = Number(
+            transform.replace("rotateX(", "").replace("deg)", "")
+        );
+
+        const eff = ((rotation % 360) + 360) % 360;
+
+        return !(eff > 90 && eff < 270)
+            ? projects[frontIndex]
+            : projects[backIndex];
+    };
     const frontProject = projects[frontIndex]
-    const backProject  = projects[backIndex]
+    const backProject = projects[backIndex]
 
     return (
         <section
@@ -226,7 +241,7 @@ const Project = () => {
             className='w-full rounded-tr-[59px] rounded-tl-[59px] bg-[#FF0004]'
         >
             <div className="projHeading p-8 md:p-12">
-                <h1 className='montsterat flex font-[550] text-3xl sm:text-4xl md:text-5xl text-white'>
+                <h1 className='montsterat flex font-[550] text-4xl sm:text-4xl md:text-5xl text-white'>
                     Selected Work
                     <sup className='text-sm sm:text-base md:text-xl'>(4)</sup>
                 </h1>
@@ -239,7 +254,7 @@ const Project = () => {
                 <div className="absolute min-h-[23vh] w-full inset-0 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 overflow-hidden pointer-events-none z-0">
                     <MarqueeTrack
                         innerRef={marqueeTrackARef}
-                        textClassName="montsterat font-[700] text-4xl sm:text-5xl md:text-[12rem] leading-none text-white uppercase"
+                        textClassName="montsterat font-[700] text-6xl sm:text-5xl md:text-[12rem] leading-none text-white uppercase"
                     />
                     <MarqueeTrack
                         innerRef={marqueeTrackBRef}
@@ -249,7 +264,7 @@ const Project = () => {
 
                 <div
                     ref={cardRef}
-                    className="w-[90%] md:w-[70%] lg:w-[50%] h-fit sm:h-[400px] md:h-[80vh] relative z-[1] rounded-3xl p-3"
+                    className="w-[80%] md:w-[70%] lg:w-[50%] h-[50vh] sm:h-[400px] md:h-[80vh] relative z-[1] rounded-3xl p-3"
                     style={{ transformStyle: "preserve-3d", transform: "rotateX(0deg)" }}
                 >
                     <div
@@ -268,9 +283,13 @@ const Project = () => {
                             </div>
                         </div>
                         <div
-                            className="w-full cursor-pointer h-[82%] rounded-2xl overflow-hidden relative z-[5]"
+                            className="w-full cursor-pointer myHeihgt h-[82%] rounded-2xl overflow-hidden relative z-[5]"
                             onMouseEnter={() => animateCursor(frontCursor1Ref, frontCursor2Ref, 'enter')}
                             onMouseLeave={() => animateCursor(frontCursor1Ref, frontCursor2Ref, 'leave')}
+                            onClick={() => {
+                                const project = getVisibleProject();
+                                window.open(project.projLink, "_blank");
+                            }}
                         >
                             <img src={frontProject.image} alt={frontProject.title}
                                 className="w-full h-full object-cover transition-transform duration-300 ease-linear hover:scale-95 rounded-2xl" />
@@ -305,6 +324,10 @@ const Project = () => {
                             className="w-full cursor-pointer h-[82%] rounded-2xl overflow-hidden relative z-[5]"
                             onMouseEnter={() => animateCursor(backCursor1Ref, backCursor2Ref, 'enter')}
                             onMouseLeave={() => animateCursor(backCursor1Ref, backCursor2Ref, 'leave')}
+                            onClick={() => {
+                                const project = getVisibleProject();
+                                window.open(project.projLink, "_blank");
+                            }}
                         >
                             <img src={backProject.image} alt={backProject.title}
                                 className='w-full h-full object-cover transition-transform duration-300 ease-linear hover:scale-95 rounded-2xl' />

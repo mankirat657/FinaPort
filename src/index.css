@@ -26,7 +26,7 @@ body{
 }
 
 .fontTri {
-  font-family: "Staatliches", sans-serif;
+  font-family: "Staatliches", sans-serif !important;
 }
 
 .lineheight {
@@ -174,4 +174,66 @@ body{
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: shimmer 3s linear infinite;
+}
+@media (max-width : 768px) {
+  .mybtn{
+    padding: .5rem .5rem;
+  }
+  .problemSol{
+    color: #87807b;
+    font-size: 14rem;
+  }
+  .footerText{
+    font-size: 2.5rem;
+  }
+  .mytext{
+    font-size: 3rem !important;
+  }
+  .mainFooter{
+    flex-direction: column;
+  }
+  .myflexFooter{
+    padding-top: 8px;
+    gap: 13px;
+    padding-bottom: 10px;
+  }
+  .myflexFooter p{
+    font-size: 2rem;
+  }
+  .mypad{
+    padding: .4rem 1rem !important;
+  }
+  .about{
+    gap: 10px;
+  }
+  .aboutContent{
+    flex-direction: column;
+  }
+  .mycards{
+    width: 100%;
+  }
+  .marqueeTExt{
+    font-size: 8rem;
+  }
+  .marqueediv{
+    height: 19vh;
+  }
+  .marqueeSpace{
+    margin-top: 3rem;
+  }
+  .myHeihgt{
+    height: 65%;
+  }
+  .aboutContentLeft{
+    width: 100%;
+    padding-top: 1rem;
+    gap: 20px;
+  }
+  .nonediv{
+    display: none;
+  }
+  .aboutContentRightdiv{
+    width: 100%;
+    flex-direction: column;
+  }
 }

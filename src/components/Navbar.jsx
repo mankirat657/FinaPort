@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react'
 import Button from './Button'
-import { LuGalleryVerticalEnd, LuSearch, LuMenu } from 'react-icons/lu'
+import { LuGalleryVerticalEnd, LuSearch, LuMenu, LuX } from 'react-icons/lu'
 import gsap from 'gsap'
+import ArtShowCaseGallery from './ArtShowCaseGallery'
 
-const NAV_ITEMS = ["Work", "Studio", "Insights", "Connect"]
+const NAV_ITEMS = ["home", "about", "project", "connect"]
 
 const Navbar = () => {
+  const[gallery,setGallery] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false)
   const [activeItem, setActiveItem] = useState('Work')
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -21,7 +23,8 @@ const Navbar = () => {
   const menuItemsRef = useRef([])
   const mobileMenuRef = useRef(null)
   const gradientLineRef = useRef(null)
-  const glowRef = useRef(null) 
+  const glowRef = useRef(null)
+  const menuButtonRef = useRef(null)
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 10)
@@ -146,19 +149,19 @@ const Navbar = () => {
 
       <div
         ref={glowRef}
-        className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-[80%] h-28 bg-red-500 rounded-full blur-3xl opacity-0 pointer-events-none"
+        className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-[80%] h-28 bg-red-500 rounded-full opacity-0 pointer-events-none"
         style={{
           filter: 'blur(10px)',
           background: 'radial-gradient(ellipse at center, rgba(255,0,4,0.3) 0%, transparent 80%)'
         }}
       />
 
-      <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-[#FF0004] to-transparent relative">
+      <div className="h-[3px] w-full bg-gradient-to-r from-transparent via-[#FF0004] to-transparent relative">
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-pulse" />
       </div>
 
-      <div className="max-w-[1600px] mx-auto px-6 lg:px-12 relative">
-        <div className="flex items-center justify-between py-2 ">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-12 relative">
+        <div className="flex items-center justify-between py-2">
 
           <div className="flex items-center gap-3">
             <a 
@@ -167,7 +170,7 @@ const Navbar = () => {
               className="group opacity-0 flex items-center gap-2 relative"
             >
               <span className="inline-flex items-center justify-center bg-[#1a1a1a] rounded-2xl px-3 py-2 shadow-2xl border border-white/10">
-                <span className="text-2xl font-black tracking-tight text-white">
+                <span className="text-xl sm:text-2xl font-black tracking-tight text-white">
                   M
                   <span className="text-[#FF0004]">S</span>
                 </span>
@@ -199,6 +202,7 @@ const Navbar = () => {
                     }
                   `}
                   onClick={() => handleItemClick(item, idx)}
+                  sectionId={item}
                 >
                   {item}
                   {activeItem === item && (
@@ -214,7 +218,7 @@ const Navbar = () => {
               classnames="
                 group relative overflow-hidden
                 bg-[#1a1a1a] text-white text-xs tracking-[0.15em] uppercase
-                font-semibold px-6 py-2.5 rounded-full
+                font-semibold px-4 sm:px-6 py-2.5 rounded-full
                 transition-all duration-300
                 hover:bg-[#FF0004]
                 hover:shadow-[0_8px_30px_rgba(255,0,4,0.3)]
@@ -224,20 +228,27 @@ const Navbar = () => {
               Icon={LuGalleryVerticalEnd}
               iconColor="#fff"
               iconSize={16}
+              onClick={() => setGallery(true)}
             >
-              <span className="relative z-10">Gallery</span>
+              <span className="relative z-10 hidden sm:inline">Gallery</span>
+              <span className="relative z-10 sm:hidden">
+                <LuGalleryVerticalEnd size={16} />
+              </span>
               <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-[#FF0004] to-[#cc0004] -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
             </Button>
 
-            <Button
-              classnames="
-                lg:hidden p-2 rounded-lg text-[#1a1a1a] hover:bg-[#1a1a1a]/5
-                transition-all duration-300
-              "
+            <button
+              ref={menuButtonRef}
+              className="lg:hidden p-2 rounded-lg text-[#1a1a1a] hover:bg-[#1a1a1a]/5 transition-all duration-300"
               onClick={toggleMenu}
-              Icon={LuMenu}
-              iconSize={22}
-            />
+              aria-label="Toggle menu"
+            >
+              {isMenuOpen ? (
+                <LuX size={24} className="text-[#1a1a1a]" />
+              ) : (
+                <LuMenu size={24} className="text-[#1a1a1a]" />
+              )}
+            </button>
           </div>
 
         </div>
@@ -249,15 +260,20 @@ const Navbar = () => {
 
         <div 
           ref={mobileMenuRef}
-          className="lg:hidden absolute top-full left-0 right-0 mt-2 p-6 bg-[#faf5f0]/98 backdrop-blur-xl rounded-2xl shadow-2xl border border-[#1a1a1a]/5 hidden flex-col gap-2"
+          className="lg:hidden absolute top-full left-0 right-0 mt-2 p-4 sm:p-6 bg-[#faf5f0]/98 backdrop-blur-xl rounded-2xl montsterat shadow-2xl border border-[#1a1a1a]/5 hidden flex-col gap-2"
+          style={{
+            marginLeft: '4px',
+            marginRight: '4px',
+            width: 'calc(100% - 8px)'
+          }}
         >
           {NAV_ITEMS.map((item, idx) => (
             <Button
-              key={item}
+              sectionId={item}
               ref={el => menuItemsRef.current[idx] = el}
               classnames={`
-                w-full text-left px-4 py-3 rounded-xl text-base font-medium
-                transition-all duration-300
+                w-full text-left px-4 py-3.5 rounded-xl text-base font-medium
+                transition-all  duration-300
                 ${activeItem === item 
                   ? 'bg-[#1a1a1a] text-white' 
                   : 'text-[#4a4a4a] hover:bg-[#1a1a1a]/5'
@@ -271,15 +287,16 @@ const Navbar = () => {
               {item}
             </Button>
           ))}
-          <div className="h-px bg-[#1a1a1a]/10 my-2" />
+          <div className="h-px bg-[#1a1a1a]/10 my-2"   />
           <Button
             classnames="
               w-full flex items-center justify-center gap-3
               bg-[#FF0004] text-white text-sm font-semibold
-              px-4 py-3 rounded-xl
+              px-4 py-3.5 rounded-xl
               hover:bg-[#cc0004] transition-colors duration-300
             "
             Icon={LuGalleryVerticalEnd}
+            onClick={() => setGallery(true)}
             iconColor="#fff"
           >
             Visit Gallery
@@ -291,6 +308,7 @@ const Navbar = () => {
           className="h-[1px] bg-gradient-to-r from-transparent via-[#1a1a1a]/10 to-transparent origin-left scale-x-0 opacity-0"
         />
       </div>
+      {gallery && <ArtShowCaseGallery setGallery={setGallery} />}
     </nav>
   )
 }

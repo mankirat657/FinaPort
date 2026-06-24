@@ -182,7 +182,7 @@ const Hero = () => {
                 </div>
 
                 <div className="flex flex-col gap-2 w-full">
-                    <h1 ref={titleRef} className='fontTri text-[8rem] sm:text-[12rem] md:text-[16rem] lg:text-[21rem] text-[#333333] leading-[0.9] tracking-tight relative'>
+                    <h1 ref={titleRef} className='fontTri text-[6rem] sm:text-[12rem] md:text-[15rem] lg:text-[24rem] text-[#333333] leading-[0.9] tracking-tight relative'>
                         INNOVATOR.
                     </h1>
                     
@@ -222,21 +222,22 @@ const Hero = () => {
                                 
                                 <div ref={buttonsRef} className="flex items-center gap-4 mt-4">
                                     <Button 
+                                    sectionId='project'
                                         children='See my work' 
                                         Icon={FaArrowRight} 
-                                        classnames='bg-[#FF0004] text-white px-6 py-2 rounded-lg font-[500] hover:shadow-xl hover:shadow-red-500/30 transition-all duration-300 flex items-center gap-2 group'
+                                        classnames='bg-[#FF0004] text-white px-6 py-2 rounded-lg font-[500] mybtn hover:shadow-xl hover:shadow-red-500/30 transition-all duration-300 flex items-center gap-2 group'
                                     />
                                     <Button 
                                         children='Download CV' 
                                         Icon={FaArrowDown} 
-                                        classnames='bg-[#333333] text-white px-6 py-2 rounded-lg font-[500] hover:shadow-xl hover:shadow-[#333333]/30 transition-all duration-300 flex items-center gap-2 group'
+                                        classnames='bg-[#333333] text-white px-6 py-2 rounded-lg font-[500] mybtn hover:shadow-xl hover:shadow-[#333333]/30 transition-all duration-300 flex items-center gap-2 group'
                                     />
                                 </div>
                             </div>
                         </div>
 
                         <div className="flex flex-col gap-4 w-full lg:w-[40%] px-3">
-                            <div ref={cardRef} className="flex flex-col gap-4 bg-[#ebe5dd] shadow-xl p-5 rounded-2xl hover:shadow-2xl transition-shadow duration-500 relative overflow-hidden">
+                            <div ref={cardRef} className="flex flex-col gap-4 bg-[#ebe5dd] shadow-2xl border border-[#bebebe] p-5 rounded-2xl hover:shadow-2xl transition-shadow duration-500 relative overflow-hidden">
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-red-500/5 rounded-full blur-2xl" />
                                 
                                 <p className='montsterat font-[550] text-xl w-full text-[#333333] relative z-10'>

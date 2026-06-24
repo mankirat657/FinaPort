@@ -57,15 +57,13 @@ const AboutDetails = () => {
   }, [])
 
   return (
-    <div className='max-w-[1600px] pb-12 min-h-fit relative mx-auto overflow-hidden bg-[#FFF1E9]'>
+    <div className='max-w-[1600px] marqueeSpace pb-12 min-h-fit relative mx-auto overflow-hidden bg-[#FFF1E9]'>
       
-      {/* Subtle Background Accents */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#FF0004]/20 to-transparent"></div>
         <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#FF0004]/20 to-transparent"></div>
       </div>
 
-      {/* Marquee Section */}
       <div className="relative w-full py-3 fontTri overflow-hidden cursor-pointer group">
         <div className="absolute inset-0 bg-[#FF0004]"></div>
         <div className="absolute inset-0 bg-black/5 group-hover:bg-black/0 transition-all duration-500"></div>
@@ -75,10 +73,10 @@ const AboutDetails = () => {
           className="flex items-center gap-2 whitespace-nowrap will-change-transform relative z-10"
           style={{ display: 'flex' }}
         >
-          <div ref={textRef} className="flex items-center gap-2">
+          <div ref={textRef} className="flex marqueediv items-center gap-2">
             {['CREATIVITY', 'PROBLEM SOLVING', 'DEVELOPMENT', 'DESIGN', 'MINDSET'].map((text, index) => (
               <React.Fragment key={index}>
-                <h1 className='text-[#FFF1E9] text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-wider'>
+                <h1 className='text-[#FFF1E9] marqueeTExt text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-wider'>
                   {text}
                 </h1>
                 <div className="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-[#FFF1E9]/80 flex-shrink-0"></div>

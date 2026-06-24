@@ -195,15 +195,11 @@ const About = () => {
 
   return (
     <div ref={aboutRef} className='max-w-[1600px] min-h-screen relative mx-auto px-4 lg:px-6 overflow-hidden'>
-        
-        {/* ─── Premium Gradient Orbs ─── */}
         <div className="absolute inset-0 -z-10">
           <div ref={gradientRef} className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-red-500/5 rounded-full blur-3xl opacity-0" />
           <div className="absolute bottom-[-30%] right-[-10%] w-[400px] h-[400px] bg-orange-400/5 rounded-full blur-3xl" />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-500/3 rounded-full blur-3xl" />
         </div>
-
-        {/* ─── Animated Sparkles ─── */}
         <div className="absolute inset-0 pointer-events-none">
           {[...Array(8)].map((_, i) => (
             <div
@@ -219,7 +215,6 @@ const About = () => {
           ))}
         </div>
 
-        {/* ─── Background Marquee ─── */}
         <div className="textBackground absolute top-3 left-0 whitespace-nowrap overflow-hidden w-full opacity-20">
             <div 
               ref={marqueeRef} 
@@ -228,7 +223,7 @@ const About = () => {
             >
                 <h1 
                   ref={textRef}
-                  className='text-[#c2b7b1] fontTri text-[8rem] sm:text-[10rem] md:text-[12rem] lg:text-[18rem] leading-none font-[800] inline-block select-none'
+                  className='text-[#c2b7b1] problemSol fontTri text-[8rem] sm:text-[10rem] md:text-[12rem] lg:text-[18rem] leading-none font-[800] inline-block select-none'
                 >
                   PROBLEM SOLVING
                 </h1>
@@ -247,10 +242,10 @@ const About = () => {
 
             <div className="aboutContent flex items-start  justify-between">
                 
-                <div className="w-[50%] flex flex-col gap-2">
-                    <div className="w-[20%] h-[1vh] bg-gradient-to-r from-[#FF0004] to-red-400 rounded-full mb-3 animate-pulse"></div>
+                <div className="w-[50%] aboutContentLeft flex flex-col gap-2">
+                    <div className="w-[20%] h-[1vh] nonediv bg-gradient-to-r from-[#FF0004] to-red-400 rounded-full mb-3 animate-pulse"></div>
                     
-                    <h1 ref={headingRef} className='text-6xl font-[500] fontTri text-[#333333] leading-none opacity-0'>
+                    <h1 ref={headingRef} className='text-6xl abouthtatext font-[500] fontTri text-[#333333] leading-none opacity-0'>
                       I DON'T JUST WRITE CODE.<br/> I BUILD <span className='text-[#FF0004] relative inline-block'>
                         DIGITAL EXPERIENCES.
                         <span className="absolute -inset-1 bg-red-500/10 blur-xl rounded-full" />
@@ -266,6 +261,7 @@ const About = () => {
                     
                     <div ref={buttonRef} className="w-fit pt-2 opacity-0">
                       <Button 
+                      sectionId='project'
                         children='Check out my work' 
                         Icon={FaArrowRight} 
                         classnames='bg-[#FF0004] text-white px-3 py-2 rounded-lg font-[500] hover:shadow-2xl hover:shadow-red-500/40 transition-all duration-300 flex items-center gap-2 group relative overflow-hidden'
@@ -273,7 +269,7 @@ const About = () => {
                     </div>
                 </div>
 
-                <div className="w-[45%] flex flex-wrap items-center gap-3">
+                <div className="w-[45%] aboutContentRightdiv flex flex-wrap items-center gap-3">
                   {[
                     { Icon: FaFolder, title: "04+", desc: "Project delivered", color: "from-blue-500 to-blue-400" },
                     { Icon: MdOutlineWork, title: "02+", desc: "Internship completed", color: "from-green-500 to-green-400" },
@@ -283,10 +279,9 @@ const About = () => {
                     <div 
                       key={index}
                       ref={el => cardsRef.current[index] = el}
-                      className="w-[calc(50%-0.375rem)] opacity-0"
+                      className="w-[calc(50%-0.375rem)] mycards opacity-0"
                     >
-                      <div className="relative group">
-                        {/* Glow effect behind card */}
+                      <div className="relative group ">
                         <div className={`absolute -inset-0.5 bg-gradient-to-r ${item.color} rounded-2xl blur opacity-0 group-hover:opacity-30 transition-opacity duration-500`} />
                         
                         <Card 
@@ -294,10 +289,9 @@ const About = () => {
                           title={item.title} 
                           desc={item.desc}
                           lastOne={index === 3}
-                          className="relative bg-[#ebe5dd]/90 backdrop-blur-sm hover:backdrop-blur-md transition-all duration-500 hover:shadow-2xl hover:-translate-y-1"
+                          className="relative  bg-[#ebe5dd]/90 backdrop-blur-sm hover:backdrop-blur-md transition-all duration-500 hover:shadow-2xl hover:-translate-y-1"
                         />
                         
-                        {/* Animated border on hover */}
                         <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-[#FF0004]/20 transition-all duration-500 pointer-events-none" />
                       </div>
                     </div>

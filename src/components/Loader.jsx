@@ -230,7 +230,7 @@ const Loader = ({ setLoading }) => {
           <div className="preloader-img"><img className='w-full h-full object-cover' src={Proj8} alt="project6" loading="eager" /></div>
         </div>
         <div className="preloader-header">
-          <h1 className='alterative font-bold !text-9xl'>CREAT</h1>
+          <h1 className='alterative mytext font-bold !text-9xl'>CREAT</h1>
           <div className="preloader-counter">
             <p>000</p>
           </div>
